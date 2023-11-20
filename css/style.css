@@ -1,0 +1,424 @@
+/*
+    font-family: 'Lato', sans-serif;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-family: 'Open Sans', sans-serif;
+
+    font-family: 'Source Sans 3', sans-serif;
+*/
+/*
+AUDIO
+*/
+.music-toggle {
+    position: fixed;
+    color: whitesmoke;
+    right: 10px;
+    padding: 6px;
+    border-radius: 100%;
+    box-shadow: 2px 4px 4px whitesmoke;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.togglePositionTop {
+    top: 10px;
+}
+
+.togglePositionBottom {
+    bottom: 10px;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Icons Outlined';
+    font-size: 24px;
+}
+
+/*
+GENERAL
+*/
+.bgPurple {
+    background-color: #000000;
+}
+
+.navbar-item.active {
+    color: violet !important;
+}
+
+/* Stile predefinito per il simbolo "|" */
+.nav-link:after {
+    content: " |";
+    color: white;
+}
+
+/*HOMEPAGE*/
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+    transition: height 0.4s ease-in-out;
+    
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#navbar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    color: whitesmoke;
+}
+
+#imageLogoImg {
+    width: 100%;
+}
+
+#logo {
+    height: 80px;
+    width: 80px;
+}
+
+.all-hover {
+    transition: transform 0.4s ease;
+}
+
+.all-hover:hover {
+    color: grey;
+    transform: translateY(-4px);
+}
+
+/*WHO I AM?*/
+.backgroundWhoIam {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+
+}
+
+.backgroundWhoIam img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#titleWhoIam {
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.parallelepipedo {
+    width: 40px;
+    height: 60px;
+    transform: skewX(-20deg);
+    border-radius: 7px;
+}
+
+.pp1 {
+    background: linear-gradient(to top right, #000000, #ffffff);
+}
+
+.pp2 {
+    background: linear-gradient(to top right, #1f256d, #ffffff);
+}
+
+.pp3 {
+    background: linear-gradient(to top right, #321144, #ffffff);
+}
+
+.text_yellow {
+    color: #fafb63;
+}
+
+#pWhoIam {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.5em;
+}
+
+/*EXPERTISE*/
+.backgroundExpertise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+
+}
+
+.backgroundExpertise img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-container {
+    transition: transform 0.4s ease;
+}
+
+.badge-container:hover {
+    transform: translateY(-10px);
+}
+
+#titleExpertise {
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.imgBadge {
+    width: 250px;
+    height: 250px;
+}
+
+.textBadge {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+/*SKILLS*/
+.video-background-skills {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    transition: height 0.4s ease-in-out;
+}
+
+.video-background-skills video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#titleSkills {
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.pSkills {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 2em;
+    color: whitesmoke;
+    text-align: end;
+}
+
+.imgBadgeSkills {
+    width: 150px;
+    height: 150px;
+}
+
+.nSkills {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: whitesmoke;
+}
+
+.lvlSkills {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    font-size: 1.5em;
+    color: whitesmoke;
+}
+
+.decorative-line {
+    height: 5px;
+    width: 25%;
+    background-color: #fafb63;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.active {
+    color: #fafb63 !important;
+}
+
+.list-unstyled li {
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.list-unstyled li:hover {
+    transform: translateX(-10px);
+}
+
+/*
+PROJECT
+*/
+.backgroundProject {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+
+}
+
+.backgroundProject img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#titleProject {
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cardW {
+    height: 230px;
+}
+
+.titleProject {
+    font-family: 'Montserrat', sans-serif;
+    color: violet;
+    font-weight: bold;
+}
+
+.textProject {
+    font-family: 'Montserrat', sans-serif;
+    color: #f9a60d;
+    font-weight: bold;
+}
+.textProjectP {
+    font-family: 'Montserrat', sans-serif;
+    color: whitesmoke;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.textDescription {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: larger;
+}
+
+.bgCard {
+    background-color: #000000;
+    box-shadow: 3px 3px 12px violet;
+}
+
+.cardHover {
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.cardHover:hover {
+    transform: translateY(-10px);
+}
+
+.badgeProject {
+    width: 40px;
+    height: 40px;
+}
+
+.logoDimension {
+    height: 200px;
+}
+
+.generationBtext {
+    color: #f9a60d;
+    font-family: 'Montserrat', sans-serif;
+}
+.zindexGem {
+    z-index: 3;
+}
+
+.zindexSottoBF {
+    z-index: -1;
+}
+/*
+FAQ
+*/
+.video-background-faq {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    transition: height 0.4s ease-in-out;
+}
+
+.video-background-faq video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#titleFaq {
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#logoFaq {
+    width: 65%;
+}
+
+.rotate-animation {
+    animation: rotate 5s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pFaq {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 2em;
+    color: whitesmoke;
+}
+
+.pFaqA {
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-weight: lighter !important;
+    font-style: italic;
+    color: whitesmoke !important;
+}
+
+.logo-container {
+    height: 200px;
+    max-height: 200px;
+}
+
+#faqList li {
+    cursor: pointer;
+}
