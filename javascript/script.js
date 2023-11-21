@@ -2,7 +2,7 @@
 AUDIO
 */
 const backgroundAudio = document.getElementById('backgroundAudio');
-backgroundAudio.volume = 0.15;
+backgroundAudio.volume = 0.10;
 
 playIcon.style.display = 'none';
 
@@ -457,3 +457,64 @@ function showR(clickedId) {
         }
     });
 }
+
+
+
+// Aggiorna la funzione load
+window.addEventListener('load', function() {
+    var loader = document.getElementById('loader-container');
+    var mainContainer = document.getElementById('pageContainer');
+
+     // Simula un ritardo di 2 secondi (puoi regolare questo valore)
+     setTimeout(function() {
+        // Nascondi il loader
+        loader.style.display = 'none';
+
+        // Mostra il contenuto della pagina
+        mainContainer.classList.remove('d-none');
+
+        // Ripristina la barra di scorrimento del corpo
+        document.body.style.overflow = 'auto';
+    }, 3300); // 2000 millisecondi (2 secondi)
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var loadingBar = document.getElementById('loading-bar');
+
+    // Aggiorna la larghezza della barra di caricamento ogni frame
+    function updateLoadingBar() {
+        loadingBar.style.width = '100%'; // Imposta la larghezza a 100%
+    }
+
+    // Esegui l'aggiornamento della barra di caricamento ogni frame
+    var animationInterval = setInterval(updateLoadingBar, 33.3); // Aggiorna ogni 33.3 ms (30 fps)
+
+    // Arresta l'aggiornamento dopo 3.3 secondi
+    setTimeout(function () {
+        clearInterval(animationInterval);
+    }, 3300);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var loadingText = document.getElementById('loading-text');
+
+    var startTime;
+    var totalTime = 3300;
+
+    function updateLoadingText(timestamp) {
+        if (!startTime) {
+            startTime = timestamp;
+        }
+
+        var currentTime = timestamp - startTime;
+        var percentage = (currentTime / totalTime) * 100;
+
+        loadingText.textContent = Math.min(Math.floor(percentage), 100) + '%';
+
+        if (currentTime < totalTime) {
+            requestAnimationFrame(updateLoadingText);
+        }
+    }
+
+    requestAnimationFrame(updateLoadingText);
+});

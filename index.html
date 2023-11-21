@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!--THREE.JS-->
+    <script src="https://threejs.org/build/three.js"></script>
+    <!--THREEJS-->
+    <script src="javascript/threeJs.js"></script>
     <!--BOOTSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -30,607 +33,647 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--FAVICON-->
     <link rel="icon" href="images/logo.ico" type="image/x-icon">
+
+
+    <!--TITLE-->
     <title>DM Portfolio</title>
+
 </head>
 
-<body class="container-fluid bgPurple" style="margin-top: 8vw;">
-    <!--VIDEO BACKGROUND-->
-    <div class="video-background shadow" id="videoContainer">
-        <video autoplay loop muted playsinline>
-            <source src="video/bgHomepage1.mp4" type="video/mp4">
-        </video>
-    </div>
-    <!--AUDIO BACKGROUND-->
-    <div>
-        <audio id="backgroundAudio" src="audio/Excitement Spreads (Copyright Free Cyberpunk x Doom Music).mp3" autoplay loop></audio>
-        <div id="musicToggle" class="music-toggle togglePositionTop">
-            <span id="playIcon" class="material-symbols-outlined">play_arrow</span>
-            <span id="pauseIcon" class="material-symbols-outlined">pause</span>
+<body class="container-fluid bgD" style="margin-top: 8vw;">
+    <div id="loader-container">
+        <div class="text-white position-absolute mb-5 p-3 ">
+            <h1 id="loading-text">0%</h1>
         </div>
-    </div>
-    <!--HOMEPAGE-->
-    <div id="homepage">
-        <div id="navLogoDiv" class="row fixed-bottom">
-            <!--LOGO WHIT FOTO-->
-            <div id="imageLogo" class="col-9 col-md-6 col-lg-3 m-auto mt-1 mb-5">
-                <img id="imageLogoImg" src="images/logoWhitPhoto.png" alt="logo whit photo">
+        <div id="loading-bar-container" class="animate__animated animate__fadeIn mt-1 bgCard">
+            <div id="loading-bar" class="animate__animated animate__fadeIn align-items-center">
             </div>
-            <!--NAVBAR-->
-            <div id="navbarDiv" class="mt-3 pb-5 d-flex justify-content-center align-items-center">
-                <nav id="navbar" class="navbar-expand-lg bg-transparent">
-                    <div class="container-fluid">
-                        <ul class="navbar-nav m-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center">
-                            <li class="nav-item">
-                                <a href="#">
-                                    <img id="logo" class="d-none rotate-animation" src="images/logo.png" alt="logo">
-                                </a>
-                            </li>
-                            <li class="nav-item all-hover">
-                                <a id="whoIamLink" class="nav-link navbar-item ms-3" aria-current="page" href="#">WHO I
-                                    AM?
-                                </a>
-                            </li>
-                            <li class="nav-item ms-3 all-hover">
-                                <a id="expertiseLink" class="nav-link navbar-item" href="#">EXPERTISE </a>
-                            </li>
-                            <li class="nav-item ms-3 all-hover">
-                                <a id="skillsLink" class="nav-link navbar-item" href="#">SKILLS </a>
-                            </li>
-                            <li class="nav-item ms-3 all-hover">
-                                <a id="projectLink" class="nav-link navbar-item" href="#">PROJECT </a>
-                            </li>
-                            <li class="nav-item ms-3 all-hover">
-                                <a id="faqLink" class="nav-link navbar-item" href="#">FAQ</a>
-                            </li>
-                        </ul>
+        </div>
+        <div id="canvas-container"></div>
+    </div>
+    <!--PAGE-->
+    <div id="pageContainer" class="d-none">
+        <!--VIDEO BACKGROUND-->
+        <div class="video-background shadow" id="videoContainer">
+            <video autoplay loop muted playsinline>
+                <source src="video/bgHomepage1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <!--AUDIO BACKGROUND-->
+        <div>
+            <audio id="backgroundAudio" src="audio/Excitement Spreads (Copyright Free Cyberpunk x Doom Music).mp3"
+                autoplay loop></audio>
+            <div id="musicToggle" class="music-toggle togglePositionTop">
+                <span id="playIcon" class="material-symbols-outlined">play_arrow</span>
+                <span id="pauseIcon" class="material-symbols-outlined">pause</span>
+            </div>
+        </div>
+        <!--HOMEPAGE-->
+        <div id="homepage">
+            <div id="navLogoDiv" class="row fixed-bottom">
+                <!--LOGO WHIT FOTO-->
+                <div id="imageLogo" class="col-9 col-md-6 col-lg-3 m-auto mt-1 mb-5">
+                    <img id="imageLogoImg" src="images/logoWhitPhoto.png" alt="logo whit photo">
+                </div>
+                <!--NAVBAR-->
+                <div id="navbarDiv" class="mt-3 pb-5 d-flex justify-content-center align-items-center">
+                    <nav id="navbar" class="navbar-expand-lg bg-transparent">
+                        <div class="container-fluid">
+                            <ul class="navbar-nav m-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center">
+                                <li class="nav-item">
+                                    <a href="#">
+                                        <img id="logo" class="d-none rotate-animation" src="images/logo.png" alt="logo">
+                                    </a>
+                                </li>
+                                <li class="nav-item all-hover">
+                                    <a id="whoIamLink" class="nav-link navbar-item ms-3" aria-current="page"
+                                        href="#">WHO I
+                                        AM?
+                                    </a>
+                                </li>
+                                <li class="nav-item ms-3 all-hover">
+                                    <a id="expertiseLink" class="nav-link navbar-item" href="#">EXPERTISE </a>
+                                </li>
+                                <li class="nav-item ms-3 all-hover">
+                                    <a id="skillsLink" class="nav-link navbar-item" href="#">SKILLS </a>
+                                </li>
+                                <li class="nav-item ms-3 all-hover">
+                                    <a id="projectLink" class="nav-link navbar-item" href="#">PROJECT </a>
+                                </li>
+                                <li class="nav-item ms-3 all-hover">
+                                    <a id="faqLink" class="nav-link navbar-item" href="#">FAQ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--WHO I AM-->
+        <div id="whoIam" class="d-none">
+            <div class="backgroundWhoIam" id="bgImageWhoIam">
+                <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
+            </div>
+            <div id="whoIamDiv">
+                <div id="titleWhoIam" class="mb-0">
+                    <div class="d-flex justify-content-center m-0 p-0">
+                        <p>WHO I AM?</p>
                     </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!--WHO I AM-->
-    <div id="whoIam" class="d-none">
-        <div class="backgroundWhoIam" id="bgImageWhoIam">
-            <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
-        </div>
-        <div id="whoIamDiv">
-            <div id="titleWhoIam" class="mb-0">
+                </div>
                 <div class="d-flex justify-content-center m-0 p-0">
-                    <p>WHO I AM?</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center m-0 p-0">
-                <div class="d-flex justify-content-center p-0 m-0">
-                    <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                        <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                        <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="pWhoIam" class="col-5 m-auto text-white p-3 m-3 text-center">
-                <p>
-                    "Sono un appassionato di <span class="text_yellow">tecnologia</span>, amo risolvere sfide e
-                    perfezionare l'<span class="text_yellow">esperienza utente</span> in ogni
-                    ambito, dagli aspetti più pratici alla crezione di interfacce complesse e coinvolgenti di sistemi
-                    interattivi.
-                    Mentre mi dedico all'<span class="text_yellow">informatica </span>e alla <span
-                        class="text_yellow">programmazione</span>, trovo ispirazione nel <span
-                        class="text_yellow">trekking</span> e
-                    nell'entusiasmante mondo dei <span class="text_yellow">videogiochi</span>.
-                    La mia missione è crescere costantemente, acquisendo sempre più conoscenza e abilità, guidato
-                    dall'obiettivo di raggiungere l'indipendenza e creare soluzioni straordinarie.
-                    Sono un individuo <span class="text_yellow">adattabile e resiliente</span>, pronto ad affrontare
-                    qualsiasi sfida con determinazione.
-                    <span class="text_yellow">Unisciti a me nel mio viaggio verso l'eccellenza, dove la bellezza
-                        estetica e l'innovazione si
-                        fondono per creare esperienze straordinarie</span>."
-                </p>
-            </div>
-        </div>
-    </div>
-    <!--EXPERTISE-->
-    <div id="expertise" class="d-none container-fluid">
-        <div class="backgroundExpertise" id="bgImageExpertise">
-            <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
-        </div>
-        <div id="expertiseDiv">
-            <div id="titleExpertise" class="mb-0">
-                <div class="d-flex justify-content-center m-0 p-0">
-                    <p>EXPERTISE</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center m-0 p-0">
-                <div class="d-flex justify-content-center p-0 m-0">
-                    <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="divBadge" class="d-flex justify-content-evenly align-items-center mt-5" class="divExpertiseZindex">
-            <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
-                <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/logoBasile.png"
-                    alt="logo liceo artistico ernesto basile messina">
-                <div class="text_yellow textBadge d-flex align-items-center mt-3 text-center">
-                    <p class="w-100">"Liceo Artistico<br>“Ernesto basile”</p>
-                </div>
-                <div class="pBadge text-white text-center d-none">
-                    <p class=" w-100">Padronanza dei maggiori programmi
-                        di
-                        manipolazione di immagini come Photoshop ed Illustrator e di tutte le tecniche pittoriche e
-                        scultoree.
-                        Partecipazione a numerosi project work a livello cittadino. Resilienza e collaborazione di team.
+                <div id="pWhoIam" class="col-5 m-auto text-white p-3 m-3 text-center">
+                    <p>
+                        "Sono un appassionato di <span class="text_yellow">tecnologia</span>, amo risolvere sfide e
+                        perfezionare l'<span class="text_yellow">esperienza utente</span> in ogni
+                        ambito, dagli aspetti più pratici alla crezione di interfacce complesse e coinvolgenti di
+                        sistemi
+                        interattivi.
+                        Mentre mi dedico all'<span class="text_yellow">informatica </span>e alla <span
+                            class="text_yellow">programmazione</span>, trovo ispirazione nel <span
+                            class="text_yellow">trekking</span> e
+                        nell'entusiasmante mondo dei <span class="text_yellow">videogiochi</span>.
+                        La mia missione è crescere costantemente, acquisendo sempre più conoscenza e abilità, guidato
+                        dall'obiettivo di raggiungere l'indipendenza e creare soluzioni straordinarie.
+                        Sono un individuo <span class="text_yellow">adattabile e resiliente</span>, pronto ad affrontare
+                        qualsiasi sfida con determinazione.
+                        <span class="text_yellow">Unisciti a me nel mio viaggio verso l'eccellenza, dove la bellezza
+                            estetica e l'innovazione si
+                            fondono per creare esperienze straordinarie</span>."
                     </p>
                 </div>
             </div>
-
-            <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
-                <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/fastweb.png"
-                    alt="logo fastweb academy">
-                <div class="pBadgev text_yellow textBadge d-flex align-items-center mt-3 text-center">
-                    <p class="w-100">"Fastweb Academy<br>- UX/UI design</p>
-                </div>
-                <div class="pBadge text-white text-center d-none">
-                    <p class="w-100">Ideazione e gestione progettuale - Graphic design
-                        - User
-                        experience - User centered design - User interface design - Problem solving - Saper lavorare in
-                        gruppo - Rispetto delle consegne.</p>
-                </div>
-            </div>
-
-            <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
-                <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/fastweb.png"
-                    alt="logo fastweb academy">
-                <div class="text_yellow textBadge d-flex align-items-center mt-3 text-center">
-                    <p class="w-100">"Fastweb academy<br>- Social Media <br>Menager"</p>
-                </div>
-                <div class="pBadge text-white text-center d-none">
-                    <p class="w-100">Tendenze attuali e previsioni future nel digital marketing,
-                        Ruolo e responsabilità di un digital strategist,
-                        Approfondimento su Facebook e Instagram,
-                        Configurazione di pagine e profili social,
-                        Creazione di campagne pubblicitarie,
-                        creazione di contenuti coinvolgenti, analisi dei dati.</p>
-                </div>
-            </div>
-
-            <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
-                <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/generation.png"
-                    alt="logo generation Italy">
-                <div class="text_yellow textBadge d-flex flex-column align-items-center mt-3 text-center">
-                    <p class="w-100">"Generation Italy<br>- Junior Full-Stack <br>Developer"</p>
-                </div>
-                <div class="pBadge text-white text-center d-none">
-                    <p class="w-100">Corso di 500 ore per Junior Java
-                        Developer.
-                        Durante il corso sono state fornite basi di programmazione a oggetti e in linguaggio Java, oltre
-                        che
-                        nei
-                        principali linguaggi
-                        di programmazione Front End (HTML, CSS, Javascript). Inolte acquisite competenze su framework
-                        come Spring e Spring Boot, Hibernate, Maven. Database come SQL e MySQL.</p>
-                </div>
-            </div>
-
         </div>
-
-    </div>
-    <!--SKILLS-->
-    <div id="skills" class="d-none">
-        <div class="video-background-skills" id="videoBgSkills">
-            <video autoplay loop muted playsinline>
-                <source src="video/bgSkills2.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div id="skillsDiv">
-            <div id="titleSkills" class="mb-0">
+        <!--EXPERTISE-->
+        <div id="expertise" class="d-none container-fluid">
+            <div class="backgroundExpertise" id="bgImageExpertise">
+                <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
+            </div>
+            <div id="expertiseDiv">
+                <div id="titleExpertise" class="mb-0">
+                    <div class="d-flex justify-content-center m-0 p-0">
+                        <p>EXPERTISE</p>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-center m-0 p-0">
-                    <p>DEVELOPMENT SKILLS</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center m-0 p-0">
-                <div class="d-flex justify-content-center p-0 m-0">
-                    <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 pSkills m-auto p-5 mt-5 me-0 border-end">
-                    <div>
-                        <ul class="list-unstyled">
-                            <li id="frontEnd" class="active">
-                                <p>Front-End</p>
-                            </li>
-                            <li id="backEnd">
-                                <p>Back-End</p>
-                            </li>
-                            <li id="tooling">
-                                <p>Tooling e Gestione del Progetto</p>
-                            </li>
-                            <li id="database">
-                                <p>Database</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-5 m-auto mt-5 ms-0">
-                    <div id="frontEndBadge" class="ms-4">
-                        <div class="d-flex">
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/html.png" alt="html5 logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">HTML5</p>
-                            </div>
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/css.png" alt="css logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">CSS</p>
-                            </div>
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/javascript.png" alt="javascript logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">JS</p>
-                            </div>
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
                         </div>
-                        <div class="lvlSkills text-center mt-5">
-                            <p>Sviluppo front-end livello intermedio.</p>
+                        <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
                         </div>
-                    </div>
-                    <div id="backEndBadge" class="d-none ms-4">
-                        <div class="d-flex">
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/java.png" alt="html5 logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">JAVA</p>
-                            </div>
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/spring.png" alt="css logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">SPRING</p>
-                            </div>
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/springBoot.png" alt="javascript logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">SPRING BOOT</p>
-                            </div>
-                            <div class="ms-3">
-                                <img class="imgBadgeSkills shadow" src="images/hibernate.png" alt="javascript logo">
-                                <hr class="decorative-line">
-                                <p class="nSkills active">HIBERNATE</p>
-                            </div>
-                        </div>
-                        <div class="lvlSkills text-center mt-5">
-                            <p>Sviluppo back-end livello junior.</p>
-                        </div>
-                    </div>
-                    <div id="toolingBadge" class="d-flex d-none ms-4">
-                        <div class="ms-3">
-                            <img class="imgBadgeSkills shadow" src="images/maven.png" alt="html5 logo">
-                            <hr class="decorative-line">
-                            <p class="nSkills active">MAVEN</p>
-                        </div>
-                    </div>
-                    <div id="databaseBadge" class="d-flex d-none ms-4">
-                        <div class="ms-3">
-                            <img class="imgBadgeSkills shadow" src="images/sql.png" alt="html5 logo">
-                            <hr class="decorative-line">
-                            <p class="nSkills active">SQL</p>
-                        </div>
-                        <div class="ms-3">
-                            <img class="imgBadgeSkills shadow" src="images/mySQL.png" alt="html5 logo">
-                            <hr class="decorative-line">
-                            <p class="nSkills active">MySQL</p>
+                        <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!--PROJECT-->
-    <div id="project" class="d-none container-fluid">
-        <div class="backgroundProject" id="bgImageProject">
-            <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
-        </div>
-        <div id="projectDiv">
-            <div id="titleProject" class="mb-0">
-                <div class="d-flex justify-content-center m-0 p-0">
-                    <p>PROJECT</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center m-0 p-0">
-                <div class="d-flex justify-content-center p-0 m-0">
-                    <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
+            <div id="divBadge" class="d-flex justify-content-evenly align-items-center mt-5" class="divExpertiseZindex">
+                <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
+                    <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/logoBasile.png"
+                        alt="logo liceo artistico ernesto basile messina">
+                    <div class="text_yellow textBadge d-flex align-items-center mt-3 text-center">
+                        <p class="w-100">"Liceo Artistico<br>“Ernesto basile”</p>
                     </div>
-                    <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                    <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
-                        onmouseleave="deactivateAnimation(this)">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="divCard" class="row d-flex w-75 m-auto mt-5 justify-content-evenly">
-            <!--CARD project 1-->
-            <div id="projectCard1" class="m-auto d-none">
-                <div class="d-flex">
-                    <div id="returnCardP1"
-                        class="bgCard rounded rounded-4 d-flex align-items-center p-1 cardW animateCard cardHover">
-                        <img class="h-100 rounded rounded-circle m-2 animateCard" src="images/generation1.png"
-                            alt="logo">
-                        <div class="text-center  animateCard">
-                            <h3 class="textProject">PROJECT.1</h3>
-                            <h4 class="textProjectP">Generation-Bookstore</h4>
-                        </div>
-                    </div>
-                    <div class="rounded rounded-4 cardW bgCard ms-4  animateCard">
-                        <img class="h-100 rounded rounded-4" src="images/navbarBookstore.png" alt="navbar-Bookstore">
-                    </div>
-                </div>
-                <div class="">
-                    <div class="d-flex mt-5">
-                        <div class="rounded rounded-4  animateCard" style="width: 100%;">
-                            <img class="rounded rounded-4 bgCard w-100" src="images/homepageBookstore.png"
-                                alt="homepage-Bookstore">
-                        </div>
-                        <div class="rounded rounded-4 d-flex flex-column ms-3  animateCard">
-                            <div class="text-white bgCard rounded rounded-4 p-3 mb-5 align-items-start">
-                                <h3 class="textProject mb-1">DESCRIZIONE</h3>
-                                <p class="textProjectP mb-0">Ux/Ui - Graphic Design - Full-Stack Development</p>
-                                <hr class="mt-0">
-                                <h4>SVILUPPO DI UNA E-LIBRARY</h4>
-                                <p class="textDescription mb-0">
-                                    <span class="fw-bold">DESIGN</span>: moderno, pulito e intuitivo per massimizzare
-                                    l'usabilità. <span class="fw-bold">COLORI</span>:
-                                    giallo, grigio e blu primary per la parte admin.<br>
-                                    <span class="fw-bold">FUNZIONALITA'</span>: Interfacce amministrativa e utente.
-                                    Catalogo. Gestione
-                                    magazzino e
-                                    ordini.<br> Gestione libri e categorie. Database con record dei restock e degli
-                                    ordini
-                                    ricevuti.
-                                </p>
-                            </div>
-                            <div class="rounded rounded-4 w-100 ms-3 mt-auto align-self-end mb-0  animateCard">
-                                <img class="rounded rounded-4 bgCard w-100" src="images/footerBookstrore.png"
-                                    alt="homepage-Bookstore">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex mt-5 justify-content-between">
-                        <img class="rounded rounded-4 bgCard w-25  animateCard" src="images/listaLibri.png"
-                            alt="lista libri">
-                        <div class="d-flex flex-column ms-5">
-                            <div class="rounded rounded-4 bgCard p-0  animateCard">
-                                <img class="rounded rounded-4 logoDimension" src="images/generation1.png"
-                                    alt="logo generation">
-                            </div>
-                            <div class="textProjectP text-center mt-auto mb-0  animateCard">
-                                <h2>Teconlogie Usate:</h2>
-                            </div>
-                            <div
-                                class="rounded rounded-4 bgCard d-flex p-3 mt-auto d-flex justify-content-center align-items-center animateCard">
-                                <div>
-                                    <div class="ms-1">
-                                        <img class="badgeProject" src="images/html.png" alt="html5 logo">
-                                    </div>
-                                    <div class="ms-1">
-                                        <img class="badgeProject" src="images/css.png" alt="css logo">
-                                    </div>
-                                    <div class="ms-1">
-                                        <img class="badgeProject" src="images/javascript.png" alt="javascript logo">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ms-3">
-                                        <img class="badgeProject " src="images/java.png" alt="html5 logo">
-                                    </div>
-                                    <div class="ms-3">
-                                        <img class="badgeProject" src="images/springBoot.png" alt="javascript logo">
-                                    </div>
-                                    <div class="ms-3">
-                                        <img class="badgeProject" src="images/hibernate.png" alt="javascript logo">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ms-3">
-                                        <img class="badgeProject" src="images/mySQL.png" alt="html5 logo">
-                                    </div>
-                                    <div class="ms-3">
-                                        <img class="badgeProject" src="images/maven.png" alt="html5 logo">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <img class="ms-5 rounded rounded-4 bgCard w-100 animateCard" src="images/ricercaLibri.png"
-                            alt="ricerca-bookstore">
-                    </div>
-                    <div class="d-flex mt-5 justify-content-between">
-                        <img class="rounded rounded-4 bgCard w-75 animateCard" src="images/adminHomepage.png"
-                            alt="admin homepage">
-                        <div class="d-flex flex-column">
-                            <div class="rounded rounded-4 bgCard text-center p-1 ms-3 animateCard">
-                                <h1 class="generationBtext">1. PW Finale Generation</h1>
-                            </div>
-                            <div class="rounded rounded-4 mt-auto bgCard ms-3 animateCard">
-                                <img class="rounded rounded-4 w-100" src="images/listaOrdini.png"
-                                    alt="lista ordini admin bookstore">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="return" class="titleProject text-center cardHover">
-                    <p class="fs-1"><span class="material-symbols-outlined">
-                            arrow_back_ios
-                        </span></p>
-                </div>
-            </div>
-            <!--CARD project 2-->
-            <div id="projectCard2" class="m-auto d-none">
-                <div class="d-flex flex-column flex-md-row">
-                    <!-- Parte sinistra del layout -->
-                    <div class="position-relative">
-                        <div id="returnCardP2"
-                            class="bgCard rounded rounded-4 d-flex align-items-center p-3 cardW animateCard cardHover">
-                            <img class="h-100 rounded rounded-circle m-2 animateCard" src="images/popteesLogo.png" alt="logo">
-                            <div class="text-center animateCard">
-                                <h3 class="titleProject">PROJECT.2</h3>
-                                <h4 class="textProjectP">Poptees</h4>
-                            </div>
-                        </div>
-                        <div class="position-absolute top-50 start-0 mt-3" style="transform: scale(1.35);">
-                            <img class="h-100 w-auto animateCard" style="max-width: calc(100% + 50px);"
-                                src="images/bellofigo.png" alt="maglietta t-shirt bello-figo poptees">
-                        </div>
-                        <div class="position-absolute top-100 start-0"
-                            style="transform: scale(1.9); margin-top: 250px; margin-right: 150px;">
-                            <img class="h-100 w-auto animateCard" style="max-width: calc(100% + 10px);"
-                                src="images/rosa.png" alt="rosa chemical maglietta t-shirt poptees">
-                        </div>
-                        <div class="position-absolute top-100 start-50 mt-4 ms-5"
-                            style="transform: scale(1.3); transform-origin: left; margin-left: 50px;">
-                            <img class="h-100 w-auto animateCard" style="max-width: calc(100% + 200px);"
-                                src="images/guè.png" alt="maglietta t-shirt guè pequeno poptees">
-                        </div>
-                    </div>
-                
-                    <!-- Parte centrale del layout -->
-                    <div class="rounded rounded-4 bgCard ms-5 zindexSottoBF">
-                        <img class="h-100 w-100 rounded-4 animateCard" src="images/maglietteprimodrop.png"
-                            alt="magliette poptees t-shirt">
-                    </div>
-                </div>
-                
-                <div class="col-md-5 rounded rounded-4 mt-5 d-flex flex-column ms-md-auto animateCard">
-                    <div class="text-white bgCard rounded rounded-4 p-3 mb-5 align-items-start">
-                        <h3 class="titleProject mb-1">DESCRIZIONE</h3>
-                        <p class="textProjectP mb-0">Branding - Ux/Ui - graphic design - shopify - social media
-                            manager</p>
-                        <hr class="mt-0">
-                        <h4>Sviluppo di un brand</h4>
-                        <p class="textDescription mb-0">
-                            Poptees è nostalgia!<br>
-                            Poptees è sentimento!<br>
-                            Poptees è vestirsi del proprio idolo.<br>
-                            Pensato e progettato sull’idea delle poptees americane dedicate alle leggende della
-                            musica rap e hip-hop, poptees restituisce a noi italiani i nostri idoli da indossare.<br>
-                            Progettato e gestito nella sua interezza: ideazione e progettazione, sito web,
-                            advertising, print on-demand, graphic design.
+                    <div class="pBadge text-white text-center d-none">
+                        <p class=" w-100">Padronanza dei maggiori programmi
+                            di
+                            manipolazione di immagini come Photoshop ed Illustrator e di tutte le tecniche pittoriche e
+                            scultoree.
+                            Partecipazione a numerosi project work a livello cittadino. Resilienza e collaborazione di
+                            team.
                         </p>
                     </div>
                 </div>
-                <div class="d-flex mt-5 col-12">
-                    <div class="col-md-10 bgCard rounded rounded-4 d-flex align-items-center p-0 zindexGem animateCard">
-                        <img class="w-100 rounded rounded-4" src="images/gemitaiz.png"
-                            alt="graphic design gemitaiz poptees t-shirt">
-                    </div>
-                    <div class="col-md-2 h-100 ms-3 flex-column p-0 animateCard">
-                        <div class="bgCard rounded rounded-4">
-                            <img class="w-100 m-0" src="images/popteesLogo.png" alt="logo poptees"
-                                style="height: 180px;">
-                        </div>
-                        <div class="bgCard mt-3 rounded rounded-4 animateCard" style="background-color: whitesmoke !important;">
-                            <img class="w-100" src="images/popteesLogo.png" alt="logo poptees" style="height: 180px;">
-                        </div>
-                    </div>
-                </div>
-                <div id="returnP2" class="titleProject text-center cardHover">
-                    <p class="fs-1"><span class="material-symbols-outlined">
-                            arrow_back_ios
-                        </span></p>
-                </div>
-            </div>
-            <!--CARD 1-->
-            <div id="project1" class="col-4 cardHover">
-                <div class="bgCard rounded rounded-4 d-flex align-items-center p-1 cardW">
-                    <img class="h-100 rounded rounded-circle m-2" src="images/generation1.png" alt="logo">
-                    <div class="text-center">
-                        <h3 class="titleProject">PROJECT.1</h3>
-                        <h4 class="textProjectP">Generation Bookstore</h4>
-                    </div>
-                </div>
-            </div>
-            <!--CARD 2-->
-            <div id="project2" class="col-4 cardHover">
-                <div class="bgCard rounded rounded-4 d-flex align-items-center p-1 cardW">
-                    <img class="h-100 rounded rounded-circle m-2" src="images/popteesLogo.png" alt="logo">
-                    <div class="text-center">
-                        <h3 class="titleProject">PROJECT.2</h3>
-                        <h4 class="textProjectP">Poptees</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--FAQ-->
-    <div id="faq" class="container m-auto d-none">
-        <div class="video-background-faq" id="videoBgFaq">
-            <video autoplay loop muted playsinline>
-                <source src="video/backgroundFAQ2.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div id="faqDiv">
-            <div class="mb-0">
-                <div class="row">
-                    <div class="col-10">
-                        <p id="titleFaq">FAQ</p>
-                        <div>
-                            <ul id="faqList" class="pFaq">
-                                <li id="d1" class="active">Che tipo di lavori accetti?
-                                    <p id="d1r" class="pFaqA">"Sono uno sviluppatore web specializzato nella creazione
-                                        di app
-                                        personalizzate. Chiedi pure, sarò lieto di trasformare la tua idea in realtà con
-                                        attenzione al design e all'esperienza utente, garantendo un prodotto funzionale
-                                        e visivamente sorprendente!"</p>
-                                </li>
-                                <li id="d2">Sei disponibile a nuove collaborazioni?
-                                    <p id="d2r" class="pFaqA d-none">"Sono una persona dinamica e resiliente ed amo le
-                                        novità!
-                                        Quindi SI, sono sempre pronto a nuove collaborazioni. Contattami."</p>
-                                </li>
-                                <li id="d3">Come posso contattarti?
-                                    <p id="d3r" class="pFaqA d-none"><span class="fw-bold">Contatti</span>:<br>
-                                        <i class="fa-regular fa-envelope"></i><span class="text_yellow">
-                                            davideminutoli97@gmail.com</span><br>
-                                        <i class="fa-brands fa-linkedin"></i>
-                                        <a href="https://www.linkedin.com/in/davide-minutoli-8391b4284" target="_blank">
-                                            <span class="text_yellow">DavideM. Full-Stack Developer</span>
-                                        </a>
 
-                                    </p>
+                <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
+                    <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/fastweb.png"
+                        alt="logo fastweb academy">
+                    <div class="pBadgev text_yellow textBadge d-flex align-items-center mt-3 text-center">
+                        <p class="w-100">"Fastweb Academy<br>- UX/UI design</p>
+                    </div>
+                    <div class="pBadge text-white text-center d-none">
+                        <p class="w-100">Ideazione e gestione progettuale - Graphic design
+                            - User
+                            experience - User centered design - User interface design - Problem solving - Saper lavorare
+                            in
+                            gruppo - Rispetto delle consegne.</p>
+                    </div>
+                </div>
+
+                <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
+                    <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/fastweb.png"
+                        alt="logo fastweb academy">
+                    <div class="text_yellow textBadge d-flex align-items-center mt-3 text-center">
+                        <p class="w-100">"Fastweb academy<br>- Social Media <br>Menager"</p>
+                    </div>
+                    <div class="pBadge text-white text-center d-none">
+                        <p class="w-100">Tendenze attuali e previsioni future nel digital marketing,
+                            Ruolo e responsabilità di un digital strategist,
+                            Approfondimento su Facebook e Instagram,
+                            Configurazione di pagine e profili social,
+                            Creazione di campagne pubblicitarie,
+                            creazione di contenuti coinvolgenti, analisi dei dati.</p>
+                    </div>
+                </div>
+
+                <div class="badge-container d-flex flex-column justify-content-center" style="width: 18rem;">
+                    <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/generation.png"
+                        alt="logo generation Italy">
+                    <div class="text_yellow textBadge d-flex flex-column align-items-center mt-3 text-center">
+                        <p class="w-100">"Generation Italy<br>- Junior Full-Stack <br>Developer"</p>
+                    </div>
+                    <div class="pBadge text-white text-center d-none">
+                        <p class="w-100">Corso di 500 ore per Junior Java
+                            Developer.
+                            Durante il corso sono state fornite basi di programmazione a oggetti e in linguaggio Java,
+                            oltre
+                            che
+                            nei
+                            principali linguaggi
+                            di programmazione Front End (HTML, CSS, Javascript). Inolte acquisite competenze su
+                            framework
+                            come Spring e Spring Boot, Hibernate, Maven. Database come SQL e MySQL.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--SKILLS-->
+        <div id="skills" class="d-none">
+            <div class="video-background-skills" id="videoBgSkills">
+                <video autoplay loop muted playsinline>
+                    <source src="video/bgSkills2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="skillsDiv">
+                <div id="titleSkills" class="mb-0">
+                    <div class="d-flex justify-content-center m-0 p-0">
+                        <p>DEVELOPMENT SKILLS</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-0 p-0">
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                        <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                        <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 pSkills m-auto p-5 mt-5 me-0 border-end">
+                        <div>
+                            <ul class="list-unstyled">
+                                <li id="frontEnd" class="active">
+                                    <p>Front-End</p>
+                                </li>
+                                <li id="backEnd">
+                                    <p>Back-End</p>
+                                </li>
+                                <li id="tooling">
+                                    <p>Tooling e Gestione del Progetto</p>
+                                </li>
+                                <li id="database">
+                                    <p>Database</p>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    <div class="col-5 m-auto mt-5 ms-0">
+                        <div id="frontEndBadge" class="ms-4">
+                            <div class="d-flex">
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/html.png" alt="html5 logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">HTML5</p>
+                                </div>
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/css.png" alt="css logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">CSS</p>
+                                </div>
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/javascript.png"
+                                        alt="javascript logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">JS</p>
+                                </div>
+                            </div>
+                            <div class="lvlSkills text-center mt-5">
+                                <p>Sviluppo front-end livello intermedio.</p>
+                            </div>
+                        </div>
+                        <div id="backEndBadge" class="d-none ms-4">
+                            <div class="d-flex">
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/java.png" alt="html5 logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">JAVA</p>
+                                </div>
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/spring.png" alt="css logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">SPRING</p>
+                                </div>
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/springBoot.png"
+                                        alt="javascript logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">SPRING BOOT</p>
+                                </div>
+                                <div class="ms-3">
+                                    <img class="imgBadgeSkills shadow" src="images/hibernate.png" alt="javascript logo">
+                                    <hr class="decorative-line">
+                                    <p class="nSkills active">HIBERNATE</p>
+                                </div>
+                            </div>
+                            <div class="lvlSkills text-center mt-5">
+                                <p>Sviluppo back-end livello junior.</p>
+                            </div>
+                        </div>
+                        <div id="toolingBadge" class="d-flex d-none ms-4">
+                            <div class="ms-3">
+                                <img class="imgBadgeSkills shadow" src="images/maven.png" alt="html5 logo">
+                                <hr class="decorative-line">
+                                <p class="nSkills active">MAVEN</p>
+                            </div>
+                        </div>
+                        <div id="databaseBadge" class="d-flex d-none ms-4">
+                            <div class="ms-3">
+                                <img class="imgBadgeSkills shadow" src="images/sql.png" alt="html5 logo">
+                                <hr class="decorative-line">
+                                <p class="nSkills active">SQL</p>
+                            </div>
+                            <div class="ms-3">
+                                <img class="imgBadgeSkills shadow" src="images/mySQL.png" alt="html5 logo">
+                                <hr class="decorative-line">
+                                <p class="nSkills active">MySQL</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!--PROJECT-->
+        <div id="project" class="d-none container-fluid">
+            <div class="backgroundProject" id="bgImageProject">
+                <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
+            </div>
+            <div id="projectDiv">
+                <div id="titleProject" class="mb-0">
+                    <div class="d-flex justify-content-center m-0 p-0">
+                        <p>PROJECT</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-0 p-0">
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <div class="parallelepipedo pp1 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                        <div class="parallelepipedo pp2 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                        <div class="parallelepipedo pp3 ms-5 p-0" onmouseenter="activateAnimation(this)"
+                            onmouseleave="deactivateAnimation(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="divCard" class="row d-flex w-75 m-auto mt-5 justify-content-evenly">
+                <!--CARD project 1-->
+                <div id="projectCard1" class="m-auto d-none">
+                    <div class="d-flex">
+                        <div id="returnCardP1"
+                            class="bgCard rounded rounded-4 d-flex align-items-center p-1 cardW animateCard cardHover">
+                            <img class="h-100 rounded rounded-circle m-2 animateCard" src="images/generation1.png"
+                                alt="logo">
+                            <div class="text-center  animateCard">
+                                <h3 class="textProject">PROJECT.1</h3>
+                                <h4 class="textProjectP">Generation-Bookstore</h4>
+                            </div>
+                        </div>
+                        <div class="rounded rounded-4 cardW bgCard ms-4  animateCard">
+                            <img class="h-100 rounded rounded-4" src="images/navbarBookstore.png"
+                                alt="navbar-Bookstore">
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="d-flex mt-5">
+                            <div class="rounded rounded-4  animateCard" style="width: 100%;">
+                                <img class="rounded rounded-4 bgCard w-100" src="images/homepageBookstore.png"
+                                    alt="homepage-Bookstore">
+                            </div>
+                            <div class="rounded rounded-4 d-flex flex-column ms-3  animateCard">
+                                <div class="text-white bgCard rounded rounded-4 p-3 mb-5 align-items-start">
+                                    <h3 class="textProject mb-1">DESCRIZIONE</h3>
+                                    <p class="textProjectP mb-0">Ux/Ui - Graphic Design - Full-Stack Development</p>
+                                    <hr class="mt-0">
+                                    <h4>SVILUPPO DI UNA E-LIBRARY</h4>
+                                    <p class="textDescription mb-0">
+                                        <span class="fw-bold">DESIGN</span>: moderno, pulito e intuitivo per
+                                        massimizzare
+                                        l'usabilità. <span class="fw-bold">COLORI</span>:
+                                        giallo, grigio e blu primary per la parte admin.<br>
+                                        <span class="fw-bold">FUNZIONALITA'</span>: Interfacce amministrativa e utente.
+                                        Catalogo. Gestione
+                                        magazzino e
+                                        ordini.<br> Gestione libri e categorie. Database con record dei restock e degli
+                                        ordini
+                                        ricevuti.
+                                    </p>
+                                </div>
+                                <div class="rounded rounded-4 w-100 ms-3 mt-auto align-self-end mb-0  animateCard">
+                                    <img class="rounded rounded-4 bgCard w-100" src="images/footerBookstrore.png"
+                                        alt="homepage-Bookstore">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex mt-5 justify-content-between">
+                            <img class="rounded rounded-4 bgCard w-25  animateCard" src="images/listaLibri.png"
+                                alt="lista libri">
+                            <div class="d-flex flex-column ms-5">
+                                <div class="rounded rounded-4 bgCard p-0  animateCard">
+                                    <img class="rounded rounded-4 logoDimension" src="images/generation1.png"
+                                        alt="logo generation">
+                                </div>
+                                <div class="textProjectP text-center mt-auto mb-0  animateCard">
+                                    <h2>Teconlogie Usate:</h2>
+                                </div>
+                                <div
+                                    class="rounded rounded-4 bgCard d-flex p-3 mt-auto d-flex justify-content-center align-items-center animateCard">
+                                    <div>
+                                        <div class="ms-1">
+                                            <img class="badgeProject" src="images/html.png" alt="html5 logo">
+                                        </div>
+                                        <div class="ms-1">
+                                            <img class="badgeProject" src="images/css.png" alt="css logo">
+                                        </div>
+                                        <div class="ms-1">
+                                            <img class="badgeProject" src="images/javascript.png" alt="javascript logo">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="ms-3">
+                                            <img class="badgeProject " src="images/java.png" alt="html5 logo">
+                                        </div>
+                                        <div class="ms-3">
+                                            <img class="badgeProject" src="images/springBoot.png" alt="javascript logo">
+                                        </div>
+                                        <div class="ms-3">
+                                            <img class="badgeProject" src="images/hibernate.png" alt="javascript logo">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="ms-3">
+                                            <img class="badgeProject" src="images/mySQL.png" alt="html5 logo">
+                                        </div>
+                                        <div class="ms-3">
+                                            <img class="badgeProject" src="images/maven.png" alt="html5 logo">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img class="ms-5 rounded rounded-4 bgCard w-100 animateCard" src="images/ricercaLibri.png"
+                                alt="ricerca-bookstore">
+                        </div>
+                        <div class="d-flex mt-5 justify-content-between">
+                            <img class="rounded rounded-4 bgCard w-75 animateCard" src="images/adminHomepage.png"
+                                alt="admin homepage">
+                            <div class="d-flex flex-column">
+                                <div class="rounded rounded-4 bgCard text-center p-1 ms-3 animateCard">
+                                    <h1 class="generationBtext">1. PW Finale Generation</h1>
+                                </div>
+                                <div class="rounded rounded-4 mt-auto bgCard ms-3 animateCard">
+                                    <img class="rounded rounded-4 w-100" src="images/listaOrdini.png"
+                                        alt="lista ordini admin bookstore">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="return" class="titleProject text-center cardHover">
+                        <p class="fs-1"><span class="material-symbols-outlined">
+                                arrow_back_ios
+                            </span></p>
+                    </div>
+                </div>
+                <!--CARD project 2-->
+                <div id="projectCard2" class="m-auto d-none">
+                    <div class="d-flex flex-column flex-md-row">
+                        <!-- Parte sinistra del layout -->
+                        <div class="position-relative">
+                            <div id="returnCardP2"
+                                class="bgCard rounded rounded-4 d-flex align-items-center p-3 cardW animateCard cardHover">
+                                <img class="h-100 rounded rounded-circle m-2 animateCard" src="images/popteesLogo.png"
+                                    alt="logo">
+                                <div class="text-center animateCard">
+                                    <h3 class="titleProject">PROJECT.2</h3>
+                                    <h4 class="textProjectP">Poptees</h4>
+                                </div>
+                            </div>
+                            <div class="position-absolute top-50 start-0 mt-3" style="transform: scale(1.35);">
+                                <img class="h-100 w-auto animateCard" style="max-width: calc(100% + 50px);"
+                                    src="images/bellofigo.png" alt="maglietta t-shirt bello-figo poptees">
+                            </div>
+                            <div class="position-absolute top-100 start-0"
+                                style="transform: scale(1.9); margin-top: 250px; margin-right: 150px;">
+                                <img class="h-100 w-auto animateCard" style="max-width: calc(100% + 10px);"
+                                    src="images/rosa.png" alt="rosa chemical maglietta t-shirt poptees">
+                            </div>
+                            <div class="position-absolute top-100 start-50 mt-4 ms-5"
+                                style="transform: scale(1.3); transform-origin: left; margin-left: 50px;">
+                                <img class="h-100 w-auto animateCard" style="max-width: calc(100% + 200px);"
+                                    src="images/guè.png" alt="maglietta t-shirt guè pequeno poptees">
+                            </div>
+                        </div>
 
+                        <!-- Parte centrale del layout -->
+                        <div class="rounded rounded-4 bgCard ms-5 zindexSottoBF">
+                            <img class="h-100 w-100 rounded-4 animateCard" src="images/maglietteprimodrop.png"
+                                alt="magliette poptees t-shirt">
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 rounded rounded-4 mt-5 d-flex flex-column ms-md-auto animateCard">
+                        <div class="text-white bgCard rounded rounded-4 p-3 mb-5 align-items-start">
+                            <h3 class="titleProject mb-1">DESCRIZIONE</h3>
+                            <p class="textProjectP mb-0">Branding - Ux/Ui - graphic design - shopify - social media
+                                manager</p>
+                            <hr class="mt-0">
+                            <h4>Sviluppo di un brand</h4>
+                            <p class="textDescription mb-0">
+                                Poptees è nostalgia!<br>
+                                Poptees è sentimento!<br>
+                                Poptees è vestirsi del proprio idolo.<br>
+                                Pensato e progettato sull’idea delle poptees americane dedicate alle leggende della
+                                musica rap e hip-hop, poptees restituisce a noi italiani i nostri idoli da
+                                indossare.<br>
+                                Progettato e gestito nella sua interezza: ideazione e progettazione, sito web,
+                                advertising, print on-demand, graphic design.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-5 col-12">
+                        <div
+                            class="col-md-10 bgCard rounded rounded-4 d-flex align-items-center p-0 zindexGem animateCard">
+                            <img class="w-100 rounded rounded-4" src="images/gemitaiz.png"
+                                alt="graphic design gemitaiz poptees t-shirt">
+                        </div>
+                        <div class="col-md-2 h-100 ms-3 flex-column p-0 animateCard">
+                            <div class="bgCard rounded rounded-4">
+                                <img class="w-100 m-0" src="images/popteesLogo.png" alt="logo poptees"
+                                    style="height: 180px;">
+                            </div>
+                            <div class="bgCard mt-3 rounded rounded-4 animateCard"
+                                style="background-color: whitesmoke !important;">
+                                <img class="w-100" src="images/popteesLogo.png" alt="logo poptees"
+                                    style="height: 180px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="returnP2" class="titleProject text-center cardHover">
+                        <p class="fs-1"><span class="material-symbols-outlined">
+                                arrow_back_ios
+                            </span></p>
+                    </div>
+                </div>
+                <!--CARD 1-->
+                <div id="project1" class="col-4 cardHover">
+                    <div class="bgCard rounded rounded-4 d-flex align-items-center p-1 cardW">
+                        <img class="h-100 rounded rounded-circle m-2" src="images/generation1.png" alt="logo">
+                        <div class="text-center">
+                            <h3 class="titleProject">PROJECT.1</h3>
+                            <h4 class="textProjectP">Generation Bookstore</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--CARD 2-->
+                <div id="project2" class="col-4 cardHover">
+                    <div class="bgCard rounded rounded-4 d-flex align-items-center p-1 cardW">
+                        <img class="h-100 rounded rounded-circle m-2" src="images/popteesLogo.png" alt="logo">
+                        <div class="text-center">
+                            <h3 class="titleProject">PROJECT.2</h3>
+                            <h4 class="textProjectP">Poptees</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FAQ-->
+        <div id="faq" class="container m-auto d-none">
+            <div class="video-background-faq" id="videoBgFaq">
+                <video autoplay loop muted playsinline>
+                    <source src="video/backgroundFAQ2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="faqDiv">
+                <div class="mb-0">
+                    <div class="row">
+                        <div class="col-10">
+                            <p id="titleFaq">FAQ</p>
+                            <div>
+                                <ul id="faqList" class="pFaq">
+                                    <li id="d1" class="active">Che tipo di lavori accetti?
+                                        <p id="d1r" class="pFaqA">"Sono uno sviluppatore web specializzato nella
+                                            creazione
+                                            di app
+                                            personalizzate. Chiedi pure, sarò lieto di trasformare la tua idea in realtà
+                                            con
+                                            attenzione al design e all'esperienza utente, garantendo un prodotto
+                                            funzionale
+                                            e visivamente sorprendente!"</p>
+                                    </li>
+                                    <li id="d2">Sei disponibile a nuove collaborazioni?
+                                        <p id="d2r" class="pFaqA d-none">"Sono una persona dinamica e resiliente ed amo
+                                            le
+                                            novità!
+                                            Quindi SI, sono sempre pronto a nuove collaborazioni. Contattami."</p>
+                                    </li>
+                                    <li id="d3">Come posso contattarti?
+                                        <p id="d3r" class="pFaqA d-none"><span class="fw-bold">Contatti</span>:<br>
+                                            <i class="fa-regular fa-envelope"></i><span class="text_yellow">
+                                                davideminutoli97@gmail.com</span><br>
+                                            <i class="fa-brands fa-linkedin"></i>
+                                            <a href="https://www.linkedin.com/in/davide-minutoli-8391b4284"
+                                                target="_blank">
+                                                <span class="text_yellow">DavideM. Full-Stack Developer</span>
+                                            </a>
+
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <!--JS BOOTSTRAP-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+    <!--JS-->
     <script src="javascript/script.js"></script>
+
 </body>
 
 </html>
