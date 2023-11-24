@@ -262,6 +262,13 @@ GENERAL
     text-align: center;
 }
 
+@media (max-width: 767px) {
+    #titleExpertise {
+        font-size: 2em;
+        margin-top: 24%;
+    }
+}
+
 .imgBadge {
     width: 250px;
     height: 250px;
@@ -297,6 +304,13 @@ GENERAL
     font-style: italic;
     font-weight: bold;
     text-align: center;
+}
+
+@media (max-width: 767px) {
+    #titleSkills {
+        font-size: 2em;
+        margin-top: 24%;
+    }
 }
 
 .pSkills {
@@ -372,6 +386,13 @@ PROJECT
     font-style: italic;
     font-weight: bold;
     text-align: center;
+}
+
+@media (max-width: 767px) {
+    #titleProject {
+        font-size: 2em;
+        margin-top: 24%;
+    }
 }
 
 .cardW {
@@ -461,6 +482,13 @@ FAQ
     font-size: 5em;
     font-style: italic;
     font-weight: bold;
+}
+
+@media (max-width: 767px) {
+    #titleFaq {
+        font-size: 2.2em;
+        margin-top: 24%;
+    }
 }
 
 #logoFaq {
