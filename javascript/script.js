@@ -55,7 +55,7 @@ function handleNavClick(event) {
         if (!animationExecuted) {
             navLogoDiv.classList.remove('fixed-bottom');
             navLogoDiv.classList.add('fixed-top');
-            navbar.style.fontSize = '0.6em';
+            navbar.style.fontSize = '0.56em';
             navbar.classList.remove('navbar-expand-lg');
             navbar.classList.add('navbar-expand');
             navLogoDiv.style.animationDuration = '500ms';
