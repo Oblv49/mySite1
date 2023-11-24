@@ -219,7 +219,7 @@ GENERAL
 
 #pWhoIam {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 @media (max-width: 767px) {
@@ -484,7 +484,7 @@ FAQ
 }
 
 #titleFaq {
-    color: whitesmoke;
+    color: yellowgreen;
     font-family: 'Montserrat', sans-serif;
     font-size: 5em;
     font-style: italic;
@@ -493,7 +493,7 @@ FAQ
 
 @media (max-width: 767px) {
     #titleFaq {
-        font-size: 2.2em;
+        font-size: 2.5em;
         margin-top: 24%;
     }
 }
@@ -521,11 +521,24 @@ FAQ
     color: whitesmoke;
 }
 
+@media (max-width: 767px) {
+    .pFaq {
+        font-size: 2em;
+    }
+}
+
 .pFaqA {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: lighter !important;
     font-style: italic;
     color: whitesmoke !important;
+}
+
+@media (max-width: 767px) {
+    .pFaqA {
+        font-weight: normal !important;
+        font-size: 0.5em;
+    }
 }
 
 .logo-container {
