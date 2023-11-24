@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--THREE.JS-->
-    <script src="https://threejs.org/build/three.module.js"></script>
-    <script src="https://threejs.org/examples/js/controls/FlyControls.js" type="text/javascript"></script>
-
+    <script src="https://threejs.org/build/three.js"></script>
     <!--THREEJS-->
     <script src="javascript/threeJs.js"></script>
     <!--BOOTSTRAP-->
@@ -35,8 +33,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--FAVICON-->
     <link rel="icon" href="images/logo.ico" type="image/x-icon">
-
-
     <!--TITLE-->
     <title>DM Portfolio</title>
 
@@ -44,15 +40,17 @@
 
 <body class="container-fluid bgD" style="margin-top: 8vw;">
     <div id="loader-container">
-        <div id="three-js-container"></div>
-        <div class="text-white position-absolute mb-5 p-3">
+        <div class="text-white position-absolute mb-5 p-3" style="top: 40%;">
             <h1 id="loading-text">0%</h1>
         </div>
         <div id="loading-bar-container" class="animate__animated animate__fadeIn mt-1 bgCard">
             <div id="loading-bar" class="animate__animated animate__fadeIn align-items-center"></div>
         </div>
+        <div class="text-secondary position-absolute mb-5 p-3" style="top: 53%; font-family: 'Montserrat', sans-serif;">
+            <p>move the world whit your mouse</p>
+        </div>
+        <div id="canvas-container"></div>
     </div>
-    
     <!--PAGE-->
     <div id="pageContainer" class="d-none">
         <!--VIDEO BACKGROUND-->
@@ -192,7 +190,7 @@
                     <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/logoBasile.png"
                         alt="logo liceo artistico ernesto basile messina">
                     <div class="text_purple textBadge d-flex align-items-center mt-3 text-center">
-                        <p class="w-100">"Liceo Artistico<br>“Ernesto basile”</p>
+                        <p class="w-100">Liceo Artistico<br>“Ernesto basile”</p>
                     </div>
                     <div class="pBadge text-white text-center d-none">
                         <p class=" w-100">Padronanza dei maggiori programmi
@@ -209,7 +207,7 @@
                     <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/fastweb.png"
                         alt="logo fastweb academy">
                     <div class="pBadgev text_purple textBadge d-flex align-items-center mt-3 text-center">
-                        <p class="w-100">"Fastweb Academy<br>- UX/UI design</p>
+                        <p class="w-100">Fastweb Academy<br>- UX/UI design</p>
                     </div>
                     <div class="pBadge text-white text-center d-none">
                         <p class="w-100">Ideazione e gestione progettuale - Graphic design
@@ -224,7 +222,7 @@
                     <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/fastweb.png"
                         alt="logo fastweb academy">
                     <div class="text_purple textBadge d-flex align-items-center mt-3 text-center">
-                        <p class="w-100">"Fastweb Academy<br>- Social Media Menager"</p>
+                        <p class="w-100">Fastweb Academy<br>- Social Media M.</p>
                     </div>
                     <div class="pBadge text-white text-center d-none">
                         <p class="w-100">Tendenze attuali e previsioni future nel digital marketing,
@@ -240,12 +238,12 @@
                     <img class="rounded rounded-circle imgBadge m-auto shadow" src="images/generation.png"
                         alt="logo generation Italy">
                     <div class="text_purple textBadge d-flex flex-column align-items-center mt-3 text-center">
-                        <p class="w-100">"Generation<br>- Junior Full-Stack <br>Developer"</p>
+                        <p class="w-100">Junior Full-Stack <br>Developer</p>
                     </div>
                     <div class="pBadge text-white text-center d-none">
                         <p class="w-100">Corso di 500 ore per Junior Java
                             Developer.
-                            Basi di programmazione a oggetti e in linguaggio Java,
+                            Basi di programmazione a oggetti in linguaggio Java,
                             Principali linguaggi
                             di programmazione Front End (HTML, CSS, Javascript). Competenze su
                             framework

@@ -1,94 +1,106 @@
-let container;
-let camera, scene, renderer, controls;
-const clock = new THREE.Clock();
-const startTime = performance.now();
+document.addEventListener('DOMContentLoaded', function () {
+    // Converti il colore esadecimale in RGB
+    var coloreHex = 0x3d007a;
+    var coloreRGB = new THREE.Color(coloreHex);
 
-init();
-animate();
+    // Inizializza la scena Three.js
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 57;
 
-function init() {
-    container = document.getElementById('three-js-container');
-    document.body.appendChild(container);
+    // Inizializza il renderer
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    var canvasContainer = document.getElementById('canvas-container');
+    canvasContainer.appendChild(renderer.domElement);
 
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 15000);
-    camera.position.z = 1000;
+    // Aggiungi una luce ambientale
+    var ambientLight = new THREE.AmbientLight(0x0000FF);
+    scene.add(ambientLight);
 
-    scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x000000, 1, 15000);
+    // Aggiungi una luce direzionale
+    var spotLight = new THREE.SpotLight(coloreRGB, 1, 50, Math.PI / 2, 1);
+    spotLight.position.set(15, 10, 10);
+    scene.add(spotLight);
 
-    const pointLight = new THREE.PointLight(0xff2200, 3, 0, 0);
-    pointLight.position.set(0, 0, 0);
-    scene.add(pointLight);
+    var spotLight2 = new THREE.SpotLight(coloreRGB, 1, 50, Math.PI / 2, 1);
+    spotLight2.position.set(-15, 10, 10);
+    scene.add(spotLight2);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 3);
-    dirLight.position.set(0, 0, 1).normalize();
-    scene.add(dirLight);
+    // Aggiungi il sistema di particelle sferiche
+    var particlesGeometry = new THREE.BufferGeometry();
+    var particlesMaterial = new THREE.PointsMaterial({
+        color: coloreRGB,
+        size: 1,  // Imposta la dimensione delle particelle
 
-    const geometry = [
-        [new THREE.IcosahedronGeometry(100, 16), 50],
-        [new THREE.IcosahedronGeometry(100, 8), 300],
-        [new THREE.IcosahedronGeometry(100, 4), 1000],
-        [new THREE.IcosahedronGeometry(100, 2), 2000],
-        [new THREE.IcosahedronGeometry(100, 1), 8000]
-    ];
+        blending: THREE.AdditiveBlending,
+        transparent: true
+    });
 
-    const material = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true });
+    // Crea un array per le posizioni delle particelle
+    var particlesPositions = [];
 
-    for (let j = 0; j < 1000; j++) {
-        const lod = new THREE.LOD();
+    for (var i = 0; i < 1000; i++) {
+        var phi = Math.random() * Math.PI * 2;
+        var theta = Math.random() * Math.PI;
 
-        for (let i = 0; i < geometry.length; i++) {
-            const mesh = new THREE.Mesh(geometry[i][0], material);
-            mesh.scale.set(1.5, 1.5, 1.5);
-            mesh.updateMatrix();
-            mesh.matrixAutoUpdate = false;
-            lod.addLevel(mesh, geometry[i][1]);
-        }
+        var x = Math.sin(theta) * Math.cos(phi) * 20;
+        var y = Math.sin(theta) * Math.sin(phi) * 20;
+        var z = Math.cos(theta) * 20;
 
-        lod.position.x = 10000 * (0.5 - Math.random());
-        lod.position.y = 7500 * (0.5 - Math.random());
-        lod.position.z = 10000 * (0.5 - Math.random());
-        lod.updateMatrix();
-        lod.matrixAutoUpdate = false;
-        scene.add(lod);
+        particlesPositions.push(x, y, z);
     }
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+    // Aggiungi le posizioni alla geometria delle particelle
+    particlesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlesPositions, 3));
 
-    controls = new THREE.FlyControls(camera, renderer.domElement);
-    controls.movementSpeed = 1000;
-    controls.rollSpeed = Math.PI / 10;
+    // Crea l'oggetto di particelle
+    var particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    particles.scale.set(3, 3, 3);
+    scene.add(particles);
 
-    window.addEventListener('resize', onWindowResize);
-}
+    // Cambia il colore e l'opacità dell'effetto di bagliore
+    var glowMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.09 });
 
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
+    var speed = 0.009;
 
-function animate() {
-    requestAnimationFrame(animate);
+    // Aggiungi un'interazione del mouse
+    var mouseX = 0, mouseY = 0;
 
-    var currentTime = performance.now();
-    var elapsedSeconds = (currentTime - startTime) / 1000;
+    document.addEventListener('mousemove', function (event) {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
 
-    if (elapsedSeconds < 3.3) {
-        render();
-    } else {
-        container.style.display = 'none';
-        document.getElementById('loader-container').style.display = 'block';
-        return;
+    document.addEventListener('wheel', function (event) {
+        var delta = event.deltaY;
+        delta *= -1;
+
+        // Modifica la scala delle particelle in base al movimento della rotellina
+        particles.scale.x += delta * 0.003;
+        particles.scale.y += delta * 0.003;
+        particles.scale.z += delta * 0.003;
+
+        // Limita la scala per evitare che le particelle diventino troppo grandi o troppo piccole
+        particles.scale.x = Math.max(0.1, particles.scale.x);
+        particles.scale.y = Math.max(0.1, particles.scale.y);
+        particles.scale.z = Math.max(0.1, particles.scale.z);
+    });
+
+    // Animazione delle particelle
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Aggiorna la posizione delle particelle in base al movimento del mouse
+        particles.position.x = mouseX * 20;
+        particles.position.y = mouseY * 20;
+
+        particles.position.x = mouseX * 20;
+        particles.position.y = mouseY * 20;
+
+        renderer.render(scene, camera);
     }
 
-    render();
-}
-
-function render() {
-    controls.update(clock.getDelta());
-    renderer.render(scene, camera);
-}
+    // Chiamata all'animazione
+    animate();
+});
