@@ -17,7 +17,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #1e0c2f; /* Colore di sfondo, viola scuro */
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,22 +25,22 @@
 }
 
 #loading-bar-container {
-    width: 35%; /* Larghezza della barra di caricamento (25% della larghezza della finestra) */
-    height: 10px; /* Altezza della barra di caricamento */
+    width: 35%; 
+    height: 10px; 
     border-radius: 20px;
-    background-color: #1e0c2f; /* Colore di sfondo della barra di caricamento */
+    background-color: #1e0c2f; 
     position: absolute;
-    top: 50%; /* Posiziona al centro della finestra */
-    left: 50%; /* Posiziona al centro della finestra */
-    transform: translate(-50%, -50%); /* Centra esattamente al centro della finestra */
-}
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}   
 
 #loading-bar {
-    width: 0; /* Inizialmente la barra è vuota */
+    width: 0;
     height: 100%;
     border-radius: 20px;
-    background-color: white; /* Colore della barra di caricamento */
-    transition: width 3.3s linear; /* Transizione della larghezza della barra di caricamento */
+    background-color: white; 
+    transition: width 3.3s linear; 
     display: flex;
     align-items: center;
 }
@@ -177,12 +177,12 @@ GENERAL
     background: linear-gradient(to top right, #321144, #ffffff);
 }
 
-.text_yellow {
-    color: #fafb63;
+.text_purple {
+    color: violet;
 }
 
 #pWhoIam {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.5em;
 }
 
@@ -227,7 +227,6 @@ GENERAL
 
 .textBadge {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     font-size: x-large;
 }
 
@@ -259,7 +258,7 @@ GENERAL
 }
 
 .pSkills {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     color: whitesmoke;
     text-align: end;
@@ -271,7 +270,7 @@ GENERAL
 }
 
 .nSkills {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1.5em;
     color: whitesmoke;
@@ -287,13 +286,13 @@ GENERAL
 .decorative-line {
     height: 5px;
     width: 25%;
-    background-color: #fafb63;
+    background-color: whitesmoke;
     margin: 10px 0;
     border-radius: 5px;
 }
 
 .active {
-    color: #fafb63 !important;
+    color:violet !important;
 }
 
 .list-unstyled li {
@@ -356,7 +355,7 @@ PROJECT
 }
 
 .textDescription {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: larger;
 }
 
@@ -440,13 +439,13 @@ FAQ
 }
 
 .pFaq {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     color: whitesmoke;
 }
 
 .pFaqA {
-    font-family: 'Source Sans 3', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
     font-weight: lighter !important;
     font-style: italic;
     color: whitesmoke !important;
@@ -459,4 +458,18 @@ FAQ
 
 #faqList li {
     cursor: pointer;
+}
+
+.linkedin-link {
+    text-decoration: none;
+    color: whitesmoke; 
+}
+
+.linkedin-link:hover {
+    color: violet;
+}
+
+.logoWhitFoto {
+    height: 10vw;
+    width: 10vw;
 }
