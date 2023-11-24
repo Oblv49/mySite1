@@ -114,6 +114,12 @@ GENERAL
     color: whitesmoke;
 }
 
+@media (max-width: 767px) {
+    #navbar {
+     font-size: 2.3em;
+    }
+}
+
 #imageLogoImg {
     max-width: 100%;
     margin-top: 20px;
@@ -121,8 +127,8 @@ GENERAL
 
 @media (max-width: 767px) {
     #imageLogoImg {
-        max-width: 80%; 
-        margin-top: 10px; 
+        max-width: 90%; 
+        margin-left: 10px;
     }
 }
 
