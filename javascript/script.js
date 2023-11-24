@@ -266,6 +266,7 @@ function togglePbadge(event) {
 SKILLS
 */
 document.getElementById('skillsLink').addEventListener('click', showSkills);
+document.getElementById('avantiSkills').addEventListener('click', showSkills);
 
 function showSkills() {
     const skills = document.getElementById('skills');

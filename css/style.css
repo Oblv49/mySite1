@@ -274,6 +274,13 @@ GENERAL
     height: 250px;
 }
 
+@media (max-width: 767px) {
+    .imgBadge {
+        width: 200px;
+        height: 200px;
+    }
+}
+
 .textBadge {
     font-family: 'Montserrat', sans-serif;
     font-size: x-large;
