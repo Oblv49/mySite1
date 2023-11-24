@@ -83,10 +83,15 @@ GENERAL
     color: violet !important;
 }
 
-/* Stile predefinito per il simbolo "|" */
 .nav-link:after {
     content: " |";
     color: white;
+}
+
+@media (max-width: 700px) {
+    .nav-link:after {
+        content: none;
+    }
 }
 
 /*HOMEPAGE*/
@@ -113,7 +118,6 @@ GENERAL
     font-size: 3em;
     color: whitesmoke;
 }
-
 
 @media (max-width: 767px) {
     #navbar {

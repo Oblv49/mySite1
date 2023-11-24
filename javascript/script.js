@@ -46,7 +46,7 @@ function handleNavClick(event) {
 
         clickedLink.classList.add('navbar-item', 'active');
 
-        document.getElementById('videoContainer').style.height = '20vw';
+        document.getElementById('videoContainer').style.height = '21vw';
         document.getElementById('imageLogo').classList.add('d-none')
         document.getElementById('logo').classList.remove('d-none');
 
@@ -55,7 +55,9 @@ function handleNavClick(event) {
         if (!animationExecuted) {
             navLogoDiv.classList.remove('fixed-bottom');
             navLogoDiv.classList.add('fixed-top');
-            navbar.style.fontSize = '1em';
+            navbar.style.fontSize = '0.6em';
+            navbar.classList.remove('navbar-expand-lg');
+            navbar.classList.add('navbar-expand');
             navLogoDiv.style.animationDuration = '500ms';
             navLogoDiv.classList.add('animate__animated', 'animate__slideInUp');
 
@@ -139,7 +141,9 @@ function resetAnimation() {
         }
     }
 
-
+    navbar.classList.remove('navbar-expand');
+    navbar.classList.add('navbar-expand-lg');
+    
     navbar.style.fontSize = '';
     document.getElementById('logo').classList.add('d-none');
 
