@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inizializza la scena Three.js
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 57;
+    camera.position.z = 20;
 
     // Inizializza il renderer
     var renderer = new THREE.WebGLRenderer();
@@ -31,8 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var particlesGeometry = new THREE.BufferGeometry();
     var particlesMaterial = new THREE.PointsMaterial({
         color: coloreRGB,
-        size: 1,  // Imposta la dimensione delle particelle
-
+        size: 0.3,
         blending: THREE.AdditiveBlending,
         transparent: true
     });
@@ -64,39 +63,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var speed = 0.009;
 
-    // Aggiungi un'interazione del mouse
+    // Aggiungi un'interazione del mouse e del tocco
     var mouseX = 0, mouseY = 0;
+    var zoomFactor = 2;
 
-    document.addEventListener('mousemove', function (event) {
+    function handleMouseMove(event) {
         mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    });
+    }
 
-    document.addEventListener('wheel', function (event) {
+    function handleTouchMove(event) {
+        var touch = event.touches[0];
+        mouseX = (touch.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(touch.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    function handleZoom(event) {
         var delta = event.deltaY;
-        delta *= -1;
+        delta *= -0.003;  // Puoi regolare questo valore per modificare la velocità dello zoom
 
-        // Modifica la scala delle particelle in base al movimento della rotellina
-        particles.scale.x += delta * 0.003;
-        particles.scale.y += delta * 0.003;
-        particles.scale.z += delta * 0.003;
+        // Modifica la scala delle particelle in base al movimento della rotellina o al pinch-to-zoom
+        particles.scale.x += delta;
+        particles.scale.y += delta;
+        particles.scale.z += delta;
 
         // Limita la scala per evitare che le particelle diventino troppo grandi o troppo piccole
         particles.scale.x = Math.max(0.1, particles.scale.x);
         particles.scale.y = Math.max(0.1, particles.scale.y);
         particles.scale.z = Math.max(0.1, particles.scale.z);
-    });
+
+        // Aggiorna il fattore di zoom
+        zoomFactor = particles.scale.x;
+    }
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('wheel', handleZoom);
 
     // Animazione delle particelle
     function animate() {
         requestAnimationFrame(animate);
 
-        // Aggiorna la posizione delle particelle in base al movimento del mouse
+        // Aggiorna la posizione delle particelle in base al movimento del mouse o del touch
         particles.position.x = mouseX * 20;
         particles.position.y = mouseY * 20;
 
-        particles.position.x = mouseX * 20;
-        particles.position.y = mouseY * 20;
+        // Aggiorna la scala delle particelle in base allo zoom
+        particles.scale.set(zoomFactor, zoomFactor, zoomFactor);
 
         renderer.render(scene, camera);
     }
