@@ -2,11 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Converti il colore esadecimale in RGB
     var coloreHex = 0x3d007a;
     var coloreRGB = new THREE.Color(coloreHex);
+    const windowWidth = window.innerWidth;
 
     // Inizializza la scena Three.js
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 20;
+    if (windowWidth <= 700) {
+        camera.position.z = 150;
+    } else {
+         camera.position.z = 20;
+    }
+   
 
     // Inizializza il renderer
     var renderer = new THREE.WebGLRenderer();
