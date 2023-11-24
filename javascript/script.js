@@ -214,7 +214,6 @@ function showWhoIam() {
 SHOW EXPERTISE - EXPERTISE
 */
 document.getElementById('expertiseLink').addEventListener('click', showExpertise);
-document.getElementById('avantiExp').addEventListener('click', showExpertise);
 
 function showExpertise() {
     const expertise = document.getElementById('expertise');
@@ -270,7 +269,6 @@ function togglePbadge(event) {
 SKILLS
 */
 document.getElementById('skillsLink').addEventListener('click', showSkills);
-document.getElementById('avantiSkills').addEventListener('click', showSkills);
 
 function showSkills() {
     const skills = document.getElementById('skills');
