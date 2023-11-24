@@ -12,9 +12,6 @@
     <!--BOOTSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
     <!--CSS-->
     <link rel="stylesheet" href="css/style.css">
     <!--GOOGLE ICON-->
@@ -48,7 +45,8 @@
         <div id="loading-bar-container" class="animate__animated animate__fadeIn mt-1 bgCard">
             <div id="loading-bar" class="animate__animated animate__fadeIn align-items-center"></div>
         </div>
-        <div id="phraseMooveWorld" class="text-secondary position-absolute mb-5 p-3" style="top: 53%; font-family: 'Montserrat', sans-serif;">
+        <div id="phraseMooveWorld" class="text-secondary position-absolute mb-5 p-3"
+            style="top: 53%; font-family: 'Montserrat', sans-serif;">
             <p>move the world whit your mouse</p>
         </div>
         <div id="canvas-container"></div>
@@ -74,14 +72,15 @@
         <div id="homepage">
             <div id="navLogoDiv" class="row fixed-bottom">
                 <!--LOGO WHIT FOTO-->
-                <div id="imageLogo" class="col-9 col-md-6 col-lg-3 m-auto mt-1 mb-5 justify-content-center align-items-center">
+                <div id="imageLogo" class="col-9  m-auto mt-1 mb-5 d-flex justify-content-center align-items-center">
                     <img id="imageLogoImg" src="images/logo.png" alt="logo whit photo">
                 </div>
                 <!--NAVBAR-->
                 <div id="navbarDiv" class="mt-3 pb-5 d-flex justify-content-center align-items-center">
                     <nav id="navbar" class="navbar-expand-lg bg-transparent">
-                        <div class="container-fluid">
-                            <ul class="navbar-nav m-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center">
+                        <div class="container">
+                            <!-- Navbar Links -->
+                            <ul class="navbar-nav m-auto mb-2  d-flex justify-content-center align-items-center">
                                 <li class="nav-item">
                                     <a href="#">
                                         <img id="logo" class="d-none rotate-animation" src="images/logo.png" alt="logo">
@@ -116,7 +115,7 @@
             <div class="backgroundWhoIam" id="bgImageWhoIam">
                 <img src="images/whoIam&expertise.png" alt="sfondo 3d form">
             </div>
-            <div id="whoIamDiv">
+            <div id="whoIamDiv" class="mb-0">
                 <div id="titleWhoIam" class="mb-0">
                     <div class="d-flex justify-content-center m-0 p-0">
                         <p>WHO I AM?</p>
@@ -135,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="pWhoIam" class="col-9 m-auto text-white p-3 m-3 text-center mb-0">
+                <div id="pWhoIam" class="col-9 m-auto text-white mt-3 text-center">
                     <p>
                         "Sono un appassionato di <span class="text_purple">tecnologia</span>, sempre alla ricerca di
                         sfide da superare e di modi per perfezionare l'<span class="text_purple">esperienza
@@ -158,9 +157,15 @@
                     </p>
                 </div>
             </div>
-            <div class="d-flex align-items-center justify-content-center mt-0 p-0">
-                <img class="logoWhitFoto" src="images/logoWhitPhoto.png" alt="logo con foto">
+            <div id="imageWhoIamLogo" class="d-flex align-items-center justify-content-center mt-0 p-0">
+                <img class="logoWhitFoto mt-0 p-0" src="images/logoWhitPhoto.png" alt="logo con foto">
             </div>
+            <div class="d-flex align-items-center justify-content-center">
+                <a id="avantiExp" class="fs-1 text-center text_purple d-lg-none m-0 p-0">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </a>
+            </div>
+
         </div>
         <!--EXPERTISE-->
         <div id="expertise" class="d-none container-fluid">

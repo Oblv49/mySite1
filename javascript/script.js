@@ -32,37 +32,71 @@ document.querySelectorAll('#navbar a.nav-link').forEach(item => {
 let animationExecuted = false;
 
 function handleNavClick(event) {
+    const windowWidth = window.innerWidth;
     const clickedLink = event.target;
     const toggleMusicPosition = document.getElementById('musicToggle');
 
-    toggleMusicPosition.classList.remove('togglePositionTop');
-    toggleMusicPosition.classList.add('togglePositionBottom');
+    if (windowWidth <= 700) {
+        toggleMusicPosition.classList.remove('togglePositionTop');
+        toggleMusicPosition.classList.add('togglePositionBottom');
 
-    document.querySelectorAll('#navbar a.nav-link').forEach(item => {
-        item.classList.remove('navbar-item', 'active');
-    });
-
-    clickedLink.classList.add('navbar-item', 'active');
-
-    document.getElementById('videoContainer').style.height = '7vw';
-    document.getElementById('imageLogo').style.display = 'none';
-    document.getElementById('logo').classList.remove('d-none');
-
-    const navLogoDiv = document.getElementById('navLogoDiv');
-
-    if (!animationExecuted) {
-        navLogoDiv.classList.remove('fixed-bottom');
-        navLogoDiv.classList.add('fixed-top');
-        navbar.style.fontSize = '2em';
-        navLogoDiv.style.animationDuration = '500ms';
-        navLogoDiv.classList.add('animate__animated', 'animate__slideInUp');
-
-        navLogoDiv.addEventListener('animationend', () => {
-            navLogoDiv.style.animationDuration = '';
-            navLogoDiv.classList.remove('animate__slideInUp');
-            animationExecuted = true;
+        document.querySelectorAll('#navbar a.nav-link').forEach(item => {
+            item.classList.remove('navbar-item', 'active');
         });
+
+        clickedLink.classList.add('navbar-item', 'active');
+
+        document.getElementById('videoContainer').style.height = '20vw';
+        document.getElementById('imageLogo').classList.add('d-none')
+        document.getElementById('logo').classList.remove('d-none');
+
+        const navLogoDiv = document.getElementById('navLogoDiv');
+
+        if (!animationExecuted) {
+            navLogoDiv.classList.remove('fixed-bottom');
+            navLogoDiv.classList.add('fixed-top');
+            navbar.style.fontSize = '1em';
+            navLogoDiv.style.animationDuration = '500ms';
+            navLogoDiv.classList.add('animate__animated', 'animate__slideInUp');
+
+            navLogoDiv.addEventListener('animationend', () => {
+                navLogoDiv.style.animationDuration = '';
+                navLogoDiv.classList.remove('animate__slideInUp');
+                animationExecuted = true;
+            });
+        }
+
+    } else {
+        toggleMusicPosition.classList.remove('togglePositionTop');
+        toggleMusicPosition.classList.add('togglePositionBottom');
+
+        document.querySelectorAll('#navbar a.nav-link').forEach(item => {
+            item.classList.remove('navbar-item', 'active');
+        });
+
+        clickedLink.classList.add('navbar-item', 'active');
+
+        document.getElementById('videoContainer').style.height = '7vw';
+        document.getElementById('imageLogo').classList.add('d-none');
+        document.getElementById('logo').classList.remove('d-none');
+
+        const navLogoDiv = document.getElementById('navLogoDiv');
+
+        if (!animationExecuted) {
+            navLogoDiv.classList.remove('fixed-bottom');
+            navLogoDiv.classList.add('fixed-top');
+            navbar.style.fontSize = '2em';
+            navLogoDiv.style.animationDuration = '500ms';
+            navLogoDiv.classList.add('animate__animated', 'animate__slideInUp');
+
+            navLogoDiv.addEventListener('animationend', () => {
+                navLogoDiv.style.animationDuration = '';
+                navLogoDiv.classList.remove('animate__slideInUp');
+                animationExecuted = true;
+            });
+        }
     }
+
 }
 
 /*
@@ -84,7 +118,7 @@ function resetAnimation() {
     toggleMusicPosition.classList.remove('togglePositionBottom');
     toggleMusicPosition.classList.add('togglePositionTop');
 
-    imageLogo.style.display = 'none';
+    imageLogo.classList.remove('d-none');
     navLogoDiv.style.display = 'none';
 
     document.querySelectorAll('#navbar a.nav-link').forEach(item => {
@@ -146,6 +180,8 @@ function showWhoIam() {
     const skills = document.getElementById('skills');
     const faq = document.getElementById('faq');
     const project = document.getElementById('project');
+    const windowWidth = window.innerWidth;
+    const imageWhoIamLogo = document.getElementById('imageWhoIamLogo');
 
     if (!expertise.classList.contains('d-none') || !skills.classList.contains('d-none') || !faq.classList.contains('d-none') || !project.classList.contains('d-none')) {
         if (!expertise.classList.contains('d-none')) {
@@ -159,16 +195,22 @@ function showWhoIam() {
         }
     }
 
+    if (windowWidth <= 700) {
+        imageWhoIamLogo.classList.add('d-none')
+    }
+
     whoIam.classList.remove('d-none');
     whoIamDiv.classList.add('animate__animated', 'animate__zoomIn')
     //bgImageWhoIam.classList.add('animate__animated', 'animate__fadeInUp')
     //bgImageWhoIam.style.animationDuration = '500ms';
+
 }
 
 /*
 SHOW EXPERTISE - EXPERTISE
 */
 document.getElementById('expertiseLink').addEventListener('click', showExpertise);
+document.getElementById('avantiExp').addEventListener('click', showExpertise);
 
 function showExpertise() {
     const expertise = document.getElementById('expertise');
@@ -323,7 +365,7 @@ function showProject1() {
     project1.classList.add('d-none');
     projectCard1.classList.remove('d-none');
 
-    
+
     elementsWithAnimateCard.forEach(element => {
         element.classList.remove('animate__animated', 'animate__fadeOutTopRight')
         element.classList.add('animate__animated', 'animate__fadeInTopLeft');
@@ -340,21 +382,21 @@ function closeProject1() {
     const project1 = document.getElementById('project1');
     const elementsWithAnimateCard = projectCard1.querySelectorAll('.animateCard');
 
-   
+
     elementsWithAnimateCard.forEach(element => {
         element.classList.remove('animate__fadeInTopLeft');
         element.classList.add('animate__animated', 'animate__fadeOutTopRight');
     });
-    
+
     project2.classList.add('animate__animated', 'animate__zoomIn');
     project1.classList.add('animate__animated', 'animate__zoomIn');
 
-    
+
     setTimeout(() => {
         projectCard1.classList.add('d-none');
         project2.classList.remove('d-none');
         project1.classList.remove('d-none');
-        
+
     }, 600);
 }
 
@@ -370,7 +412,7 @@ function showProject2() {
     project1.classList.add('d-none');
     projectCard2.classList.remove('d-none');
 
-    
+
     elementsWithAnimateCard.forEach(element => {
         element.classList.remove('animate__animated', 'animate__fadeOutTopRight')
         element.classList.add('animate__animated', 'animate__fadeInTopLeft');
@@ -386,21 +428,21 @@ function closeProject2() {
     const project1 = document.getElementById('project1');
     const elementsWithAnimateCard = projectCard2.querySelectorAll('.animateCard');
 
-   
+
     elementsWithAnimateCard.forEach(element => {
         element.classList.remove('animate__fadeInTopLeft');
         element.classList.add('animate__animated', 'animate__fadeOutTopRight');
     });
-    
+
     project2.classList.add('animate__animated', 'animate__zoomIn');
     project1.classList.add('animate__animated', 'animate__zoomIn');
 
-    
+
     setTimeout(() => {
         projectCard2.classList.add('d-none');
         project2.classList.remove('d-none');
         project1.classList.remove('d-none');
-        
+
     }, 600);
 }
 
@@ -425,7 +467,7 @@ function showFaq() {
             skills.classList.add('d-none');
         } else if (!expertise.classList.contains('d-none')) {
             expertise.classList.add('d-none');
-        } else if (!project.classList.contains('d-none')){
+        } else if (!project.classList.contains('d-none')) {
             project.classList.add('d-none');
         }
     }
@@ -461,35 +503,35 @@ function showR(clickedId) {
 
 
 // Aggiorna la funzione load
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     var loader = document.getElementById('loader-container');
     var mainContainer = document.getElementById('pageContainer');
 
-     
-     setTimeout(function() {
-       
+
+    setTimeout(function () {
+
         loader.style.display = 'none';
 
-       
+
         mainContainer.classList.remove('d-none');
 
-        
+
         document.body.style.overflow = 'auto';
-    }, 2500); 
+    }, 2500);
 });
 
 document.addEventListener('DOMContentLoaded', function () {
     var loadingBar = document.getElementById('loading-bar');
 
-    
+
     function updateLoadingBar() {
-        loadingBar.style.width = '100%'; 
+        loadingBar.style.width = '100%';
     }
 
-   
-    var animationInterval = setInterval(updateLoadingBar, 33.3); 
 
-   
+    var animationInterval = setInterval(updateLoadingBar, 33.3);
+
+
     setTimeout(function () {
         clearInterval(animationInterval);
     }, 2500);
